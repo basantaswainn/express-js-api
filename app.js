@@ -6,6 +6,7 @@ const loginController = require('./src/controllers/login');
 const productController = require('./src/controllers/product');
 const { authenticateToken } = require('./middleware/authMiddleware');
 const productDetailsRoute = require('./src/controllers/productDetailsRoute');
+const createProductController = require('./src/controllers/createProductController');
 
 const app = express();
 const port = 4000;
@@ -17,6 +18,7 @@ app.use('/register', registerController);
 app.use('/login', loginController);
 app.use('/', authenticateToken, productController);
 app.use('/', authenticateToken, productDetailsRoute);
+app.use('/', authenticateToken, createProductController);
 
 
 app.listen(port, () => {

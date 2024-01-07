@@ -20,6 +20,16 @@ class Product {
     }
   }
 
+  static async createProduct(productName,productPrice) {
+    try {
+      const [product] = await db.execute('INSERT INTO products (name, price) VALUES (?, ?)', [productName, productPrice]);
+      return product;
+      
+    } catch (error) {
+      throw error;
+    }
+  }
+
   
 }
 
