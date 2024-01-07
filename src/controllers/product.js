@@ -10,7 +10,18 @@ router.get('/product-list', authenticateToken, async (req, res) => {
   try {
     // Use the Product model to fetch products
     const products = await Product.getAllProducts();
-    res.json(products);
+    
+    // Run a loop and send a response for each product
+    const productResponses = [];
+    for (const product of products) {
+      productResponses.push({
+        productId: product.id,
+        productName: product.name,
+        // Add other properties as needed
+      });
+    }
+
+    res.json(productResponses);
   } catch (error) {
     console.error(error);
     res.sendStatus(500);
